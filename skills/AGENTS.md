@@ -40,14 +40,14 @@ Failure to follow these patterns creates technical debt and inconsistency across
 | `doc-sync/`           | Documentation synchronization             | Syncing docs across repos                |
 | `leon-writing-style/` | Style-matched content generation          | Writing content matching user's style    |
 | `arxiv-to-md/`        | arXiv paper to markdown conversion        | Converting papers for LLM consumption    |
-| `cc-history/`         | Claude Code conversation history analysis | Querying past conversations, token usage |
+| `cursor-history/`     | Cursor conversation history analysis      | Querying past conversations, token usage |
 
 ## Script Invocation
 
 All Python skill scripts are invoked as modules from `scripts/`:
 
-<invoke working-dir=".claude/skills/scripts" cmd="python3 -m skills.<skill_name>.<module> --step 1" />
+<invoke working-dir=".cursor/skills/scripts" cmd="python3 -m skills.<skill_name>.<module> --step 1" />
 
 Example:
 
-<invoke working-dir=".claude/skills/scripts" cmd="python3 -m skills.problem_analysis.analyze --step 1" />
+<invoke working-dir=".cursor/skills/scripts" cmd="python3 -m skills.problem_analysis.analyze --step 1" />

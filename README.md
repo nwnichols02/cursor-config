@@ -1,6 +1,6 @@
-# My Claude Code Workflow
+# My Cursor Workflow
 
-I use Claude Code for most of my work. After months of iteration, I noticed a
+I use Cursor for most of my work. After months of iteration, I noticed a
 pattern: LLM-assisted code rots faster than hand-written code. Technical debt
 accumulates because the LLM does not know what it does not know, and neither do
 you until it is too late.
@@ -37,21 +37,21 @@ persistent.
 
 I use a two-file pattern in every directory:
 
-**CLAUDE.md** -- Claude loads these automatically when entering a directory.
-Because they load whether needed or not, content must be minimal: a tabular
-index with short descriptions and triggers for when to open each file. When
-Claude opens `app/web/controller.py`, it retrieves just the indexes along that
-path -- not prose it might never need.
+**AGENTS.md** -- Cursor loads these as project agent instructions (including
+nested directories when supported). Because they can apply broadly, content must
+stay minimal: a tabular index with short descriptions and triggers for when to
+open each file. When you work in `app/web/controller.py`, the agent should rely
+on indexes along that path -- not prose it might never need.
 
 **README.md** -- Invisible knowledge: architecture decisions, invariants not
 apparent from code. The test: if a developer could learn it by reading source
-files, it does not belong here. Claude reads these only when the CLAUDE.md
-trigger says to.
+files, it does not belong here. Read these only when the AGENTS.md trigger says
+to.
 
 The principle is just-in-time context. Indexes load automatically but stay
 small. Detailed knowledge loads only when relevant.
 
-The technical writer agent enforces token budgets: ~200 tokens for CLAUDE.md,
+The technical writer agent enforces token budgets: ~200 tokens for AGENTS.md,
 ~500 for README.md, 100 for function docs, 150 for module docs. These limits
 force discipline -- if you are exceeding them, you are probably documenting what
 code already shows. Function docs include "use when..." triggers so the LLM
@@ -96,7 +96,7 @@ routine work.
 
 I have not run formal benchmarks. I can only tell you what I have observed using
 this workflow to build and maintain non-trivial applications entirely with
-Claude Code -- backend systems, data pipelines, streaming applications in C++,
+Cursor -- backend systems, data pipelines, streaming applications in C++,
 Python, and Go.
 
 The problems I used to hit constantly are gone:
@@ -111,7 +111,7 @@ reimplemented fifteen times across a codebase. The quality reviewer catches
 this. The technical writer ensures documentation stays consistent.
 
 **LLM-navigable documentation.** Function docs include "use when..." triggers.
-CLAUDE.md files tell the LLM which files matter for a given task. The LLM stops
+AGENTS.md files tell the LLM which files matter for a given task. The LLM stops
 guessing which code is relevant.
 
 Is it better than writing code by hand? I think so, but I cannot speak for
@@ -125,21 +125,26 @@ approach, give it a shot. I would like to hear what works and what does not.
 
 ## Quick Start
 
-Clone into your Claude Code configuration directory:
+Clone this repository and merge its tracked folders into your Cursor user
+config (or symlink them). Typical layout after install:
+
+- `~/.cursor/conventions/` -- shared conventions (from this repo's `conventions/`)
+- `~/.cursor/skills/` -- skill definitions (from this repo's `skills/`)
+- `~/.cursor/agents/` -- agent prompts (from this repo's `agents/`)
+- `~/.cursor/skills/scripts/` -- Python skill implementations (from `skills/scripts/`)
 
 ```bash
-# Per-project
-git clone https://github.com/solatis/claude-config .claude
-
-# Global (new setup)
-git clone https://github.com/solatis/claude-config ~/.claude
-
-# Global (existing ~/.claude)
-cd ~/.claude
-git remote add workflow https://github.com/solatis/claude-config
-git fetch workflow
-git merge workflow/main --allow-unrelated-histories
+git clone <your-fork-or-upstream-url> ~/cursor-config
+# Example: copy into place (adjust paths; backup ~/.cursor first if needed)
+mkdir -p ~/.cursor
+cp -R ~/cursor-config/conventions ~/.cursor/
+cp -R ~/cursor-config/skills ~/.cursor/
+cp -R ~/cursor-config/agents ~/.cursor/
 ```
+
+Point **Cursor Rules** and **Agent Skills** at `~/.cursor` (or your clone) per
+Cursor settings so skills resolve paths like `.cursor/skills/scripts` relative to
+that root.
 
 ## Usage
 
@@ -177,8 +182,8 @@ clarity, quality reviewer for completeness -- until it passes.
 The planner captures all decisions, tradeoffs, and information not visible from
 the code so that this context does not get lost.
 
-**4. Clear context.** `/clear` -- start fresh. You have written everything
-needed into the plan.
+**4. Clear context.** Clear the chat or start a new thread so the model is not
+carrying stale context. You have written everything needed into the plan.
 
 **5. Execute.** "Use your planner skill to execute plans/my-feature.md"
 
@@ -360,7 +365,7 @@ The skill was optimized using itself.
 
 ### Doc Sync
 
-The CLAUDE.md/README.md hierarchy requires maintenance. The structure changes
+The AGENTS.md/README.md hierarchy requires maintenance. The structure changes
 over time. Documentation drifts.
 
 The doc-sync skill audits and synchronizes documentation across a repository.

@@ -1,41 +1,40 @@
 ---
-name: cc-history
-description: Reference documentation for analyzing Claude Code conversation history files
+name: cursor-history
+description: Reference documentation for analyzing Cursor conversation history files
 ---
 
-# Claude Code History Analysis
+# Cursor History Analysis
 
-Reference documentation for querying and analyzing Claude Code's conversation history. Use shell commands and jq to extract information from JSONL conversation files.
+Reference documentation for querying and analyzing Cursor's conversation history. Use shell commands and jq to extract information from JSONL conversation files.
 
 ## Directory Structure
 
+Cursor stores **parent** chat transcripts under the workspace project folder:
+
 ```
-~/.claude/projects/{encoded-path}/
-  |-- {session-uuid}.jsonl          # Main conversation
-  |-- {session-uuid}/
-      |-- subagents/
-      |   |-- agent-{hash}.jsonl    # Subagent conversations
-      |-- tool-results/             # Large tool outputs
+~/.cursor/projects/<encoded-workspace-path>/
+  agent-transcripts/
+    <uuid>.jsonl
 ```
+
+Each line is one JSON message. Paths and filenames can change between Cursor
+versions; list the directory to see the current layout.
 
 ## Project Path Resolution
 
-Convert working directory to project directory:
+The `<encoded-workspace-path>` segment mirrors your project folder path with `/`
+turned into `-` (and similar rules for hidden segments). Resolve the folder for
+your current repo, then read files under `agent-transcripts/`.
 
 ```bash
-PROJECT_DIR="~/.claude/projects/$(echo "$PWD" | sed 's|^/|-|; s|/\.|--|g; s|/|-|g')"
+# Discover the projects subtree, then cd into the folder that matches your workspace
+ls ~/.cursor/projects/
 ```
 
-Encoding rules:
+Example encoding (illustrative):
 
-- Leading `/` becomes `-`
-- Regular `/` becomes `-`
-- `/.` (hidden directory) becomes `--`
-
-Examples:
-
-- `/Users/bill/.claude` -> `-Users-bill--claude`
-- `/Users/bill/git/myproject` -> `-Users-bill-git-myproject`
+- `/Users/bill/git/myproject` → `-Users-bill-git-myproject`
+- `/Users/bill/.cursor` → `-Users-bill--cursor`
 
 ## Message Types
 

@@ -28,26 +28,26 @@ When sources conflict, follow this precedence (higher overrides lower):
 | Tier | Source                              | Override Scope                |
 | ---- | ----------------------------------- | ----------------------------- |
 | 1    | Explicit user instruction           | Override all below            |
-| 2    | Project docs (CLAUDE.md, README.md) | Override conventions/defaults |
-| 3    | .claude/conventions/                | Baseline fallback             |
+| 2    | Project docs (AGENTS.md, README.md) | Override conventions/defaults |
+| 3    | .cursor/conventions/                | Baseline fallback             |
 | 4    | Universal best practices            | Confirm if uncertain          |
 
 ## Knowledge Strategy
 
-**CLAUDE.md** = navigation index (WHAT is here, WHEN to read)
+**AGENTS.md** = navigation index (WHAT is here, WHEN to read)
 **README.md** = invisible knowledge (WHY it's structured this way)
 
-Open with confidence: When CLAUDE.md trigger matches your task, read that file.
+Open with confidence: When AGENTS.md trigger matches your task, read that file.
 
 ## Convention References
 
 | Convention           | Source                                                            | When Needed               |
 | -------------------- | ----------------------------------------------------------------- | ------------------------- |
-| Documentation format | <file working-dir=".claude" uri="conventions/documentation.md" /> | CLAUDE.md/README creation |
-| Comment hygiene      | <file working-dir=".claude" uri="conventions/temporal.md" />      | Comment review            |
-| User preferences     | <file working-dir=".claude" uri="CLAUDE.md" />                    | Before ANY documentation  |
+| Documentation format | <file working-dir=".cursor" uri="conventions/documentation.md" /> | AGENTS.md/README creation |
+| Comment hygiene      | <file working-dir=".cursor" uri="conventions/temporal.md" />      | Comment review            |
+| User preferences     | <file working-dir=".cursor" uri="AGENTS.md" />                    | Before ANY documentation  |
 
-**Critical**: Read user preferences from CLAUDE.md before writing. Includes ASCII
+**Critical**: Read user preferences from AGENTS.md before writing. Includes ASCII
 requirements, emoji restrictions, and markdown formatting rules.
 
 ## Core Behavior
@@ -73,7 +73,7 @@ all edits together.
 Minimize internal reasoning verbosity:
 
 - Per-thought limit: 10 words
-- Use abbreviated notation: "Type->CLAUDE_MD; Check->triggers; Write"
+- Use abbreviated notation: "Type->AGENTS_MD; Check->triggers; Write"
 - Execute silently; output structured result only
 
 ## Forbidden Patterns

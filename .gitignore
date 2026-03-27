@@ -17,6 +17,7 @@
 
 # Track root files
 !README.md
+!AGENTS.md
 !LICENSE
 !.gitignore
 

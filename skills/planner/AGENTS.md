@@ -21,11 +21,11 @@ Python code: `scripts/skills/planner/` (planner.py, executor.py, explore.py, qr/
 
 ## Universal Conventions
 
-Scripts reference these conventions from `.claude/conventions/`:
+Scripts reference these conventions from `.cursor/conventions/`:
 
 | Convention          | When to read                                 |
 | ------------------- | -------------------------------------------- |
-| `documentation.md`  | Understanding CLAUDE.md/README.md format     |
+| `documentation.md`  | Understanding AGENTS.md/README.md format     |
 | `structural.md`     | Updating QR RULE 2 or planner decision audit |
 | `temporal.md`       | Updating TW/QR temporal contamination logic  |
 | `severity.md`       | Understanding QR severity levels             |

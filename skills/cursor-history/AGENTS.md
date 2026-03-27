@@ -1,6 +1,6 @@
-# cc-history/
+# cursor-history/
 
-Reference documentation for analyzing Claude Code conversation history files.
+Reference documentation for analyzing Cursor conversation history files.
 
 ## Files
 
@@ -13,5 +13,5 @@ Reference documentation for analyzing Claude Code conversation history files.
 
 | Directory                 | What                         | When to read                   |
 | ------------------------- | ---------------------------- | ------------------------------ |
-| `~/.claude/projects/`     | Conversation history storage | Querying actual history files  |
-| `~/.claude/settings.json` | Claude Code configuration    | Understanding project settings |
+| `~/.cursor/projects/`     | Conversation history storage | Querying actual history files  |
+| `~/.cursor/settings.json` | Cursor configuration    | Understanding project settings |

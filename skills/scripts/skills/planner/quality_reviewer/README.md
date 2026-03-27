@@ -236,7 +236,7 @@ Status overview computed on-demand. Not stored in qr-{phase}.json. Main agent ne
 
 **Tooling**: Every editor has JSON validation built-in. JSON Schema validators are ubiquitous.
 
-**LLM-friendly**: Modern LLMs handle JSON natively. ChatML and Claude both have JSON mode. No escaping issues for simple structures like QA items.
+**LLM-friendly**: Modern LLMs handle JSON natively. ChatML and many chat-tuned models support JSON mode. No escaping issues for simple structures like QA items.
 
 ## QR Iteration Blocking
 

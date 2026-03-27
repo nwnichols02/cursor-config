@@ -479,7 +479,7 @@ complex chains higher—complexity correlates with reasoning robustness.
 
 ### Human-in-the-Loop Checkpoint Patterns
 
-For agentic systems with human oversight (e.g., Claude Code with human query
+For agentic systems with human oversight (e.g., Cursor with human query
 capability), structure decomposition with approval gates:
 
 - Place human checkpoints after planning stages, before irreversible execution

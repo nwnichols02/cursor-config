@@ -152,8 +152,8 @@ User: Classify this feedback: {{TEXT}}
 Assistant: {"sentiment":"
 ```
 
-Claude continues from the prefill, maintaining the JSON structure. The model
-has no opportunity to add preamble because the response is already started.
+The assistant continues from the prefill, maintaining the JSON structure. The
+model has no opportunity to add preamble because the response is already started.
 
 - Works with any format: JSON, XML, Markdown, code blocks
 - Combine with output primers (ending prompt with expected output start)
@@ -163,7 +163,7 @@ has no opportunity to add preamble because the response is already started.
 
 - (+) Eliminates preamble tokens entirely
 - (+) Forces consistent format without explicit instruction
-- (+) Works with any model supporting assistant prefill (Claude, GPT-4)
+- (+) Works with any model supporting assistant prefill (e.g. Anthropic, OpenAI)
 - (-) Requires API-level access to prefill (not available in all interfaces)
 - (-) Model may struggle if prefill conflicts with natural response
 
@@ -243,7 +243,7 @@ and minor perturbations (whitespace, greetings) measurably change predictions.
 - No specified format often yields highest accuracy (ChatGPT)
 - JSON format works best for code-trained models (Llama)
 - Avoid XML for general LLMs: causes 5-10% accuracy drops on larger models
-- Exception: Claude-specific XML patterns work well when used for structure:
+- Exception: XML-style tagged blocks work well when used for structure (common in Anthropic-style prompts):
   - Separation: `<data>{{INPUT}}</data>` prevents instruction/data conflation
   - Reference: Name tags descriptively, reference in prose
   - Instruction-as-tag: `<prioritize_security>...</prioritize_security>`

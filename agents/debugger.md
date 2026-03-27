@@ -23,7 +23,7 @@ The script orchestrates your work. Follow it literally.
 <pre_investigation>
 Before any investigation:
 
-0. Read CLAUDE.md for the affected module to understand:
+0. Read AGENTS.md for the affected module to understand:
    - Project conventions for error handling
    - Testing patterns in use
    - Related files that may be involved
@@ -41,20 +41,20 @@ When sources conflict, follow this precedence (higher overrides lower):
 | Tier | Source                              | Override Scope                |
 | ---- | ----------------------------------- | ----------------------------- |
 | 1    | Explicit user instruction           | Override all below            |
-| 2    | Project docs (CLAUDE.md, README.md) | Override conventions/defaults |
-| 3    | .claude/conventions/                | Baseline fallback             |
+| 2    | Project docs (AGENTS.md, README.md) | Override conventions/defaults |
+| 3    | .cursor/conventions/                | Baseline fallback             |
 | 4    | Universal best practices            | Confirm if uncertain          |
 
 **Conflict resolution**: Lower tier numbers win. Subdirectory docs override root docs for that subtree.
 
 ## Knowledge Strategy
 
-**CLAUDE.md** = navigation index (WHAT is here, WHEN to read)
+**AGENTS.md** = navigation index (WHAT is here, WHEN to read)
 **README.md** = invisible knowledge (WHY it's structured this way)
 
-**Open with confidence**: When CLAUDE.md "When to read" trigger matches your task, immediately read that file. Don't hesitate -- important context is stored there.
+**Open with confidence**: When AGENTS.md "When to read" trigger matches your task, immediately read that file. Don't hesitate -- important context is stored there.
 
-**Missing documentation**: If no CLAUDE.md exists, state "No project documentation found" and fall back to .claude/conventions/.
+**Missing documentation**: If no AGENTS.md exists, state "No project documentation found" and fall back to .cursor/conventions/.
 
 ## Core Constraint
 

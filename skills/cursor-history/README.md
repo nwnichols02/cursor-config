@@ -1,6 +1,6 @@
-# Claude Code History Analysis
+# Cursor History Analysis
 
-Reference documentation for analyzing Claude Code conversation history files. This skill provides query patterns and structural knowledge for extracting insights from JSONL conversation logs.
+Reference documentation for analyzing Cursor conversation history files. This skill provides query patterns and structural knowledge for extracting insights from JSONL conversation logs.
 
 ## When to Use
 
@@ -18,29 +18,27 @@ Reference documentation for analyzing Claude Code conversation history files. Th
 
 ## Architecture
 
-Claude Code stores conversation history in `~/.claude/projects/` with directories named after encoded working directory paths.
+Cursor stores **parent** conversation transcripts under `~/.cursor/projects/`,
+in a per-workspace folder with an encoded path segment, typically with an
+`agent-transcripts/` subdirectory containing `*.jsonl` files.
 
 ```
-~/.claude/projects/
-  |-- -Users-leon--claude/              # /Users/leon/.claude
-  |   |-- {session-uuid}.jsonl          # Main conversation
-  |   |-- {session-uuid}/
-  |       |-- subagents/
-  |       |   |-- agent-{hash}.jsonl    # Subagent conversations
-  |       |-- tool-results/             # Large tool outputs
-  |-- -Users-leon-git-myproject/        # /Users/leon/git/myproject
-      |-- ...
+~/.cursor/projects/
+  <encoded-workspace-path>/
+    agent-transcripts/
+      <uuid>.jsonl
 ```
 
-### Path Encoding
+List `~/.cursor/projects/` to find the folder that corresponds to your
+repository; exact encoding rules may vary by Cursor version.
 
-Working directory paths are encoded:
+### Path Encoding (illustrative)
 
-| Original       | Encoded        | Rule                |
-| -------------- | -------------- | ------------------- |
-| `/Users/leon`  | `-Users-leon`  | Leading `/` -> `-`  |
-| `/git/project` | `-git-project` | Internal `/` -> `-` |
-| `/.claude`     | `--claude`     | `/.` -> `--`        |
+| Original              | Encoded fragment (example) | Notes                    |
+| --------------------- | -------------------------- | ------------------------ |
+| `/Users/leon`         | `-Users-leon`              | Leading `/` → `-`      |
+| `/git/project`        | `-git-project`             | Internal `/` → `-`     |
+| `/.cursor` (in path) | `--cursor`                 | `/.` segment → `--`    |
 
 ### Message Format
 
